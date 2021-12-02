@@ -1,8 +1,15 @@
-const wordSearch = (letters, word) => { 
-    const horizontalJoin = letters.map(ls => ls.join(''))
-    for (l of horizontalJoin) {
-        if (l.includes(word)) return true
-    }
-}
+const transpose = require('./transpose2D');
 
-module.exports = wordSearch
+const wordSearch = (letters2D, word) => {
+    const rowsJoined = letters2D.map(ls => ls.join(''));
+    const colsJoined = transpose(letters2D).map(ls => ls.join(''));
+    for (l of rowsJoined) {
+        if (l.includes(word)) return true;
+    }
+    for (l of colsJoined) {
+        if (l.includes(word)) return true;
+    }
+    return false;
+};
+
+module.exports = wordSearch;
